@@ -10,7 +10,7 @@ import java.awt.event.WindowEvent;
 
 /**
  *
- * @author alceu
+ * @author Mateus Junges
  */
 public class FecharJanela extends WindowAdapter{
     public void windowClosing(WindowEvent e){
