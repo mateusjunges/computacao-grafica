@@ -37,35 +37,7 @@ public class MidPointCircle extends Frame {
 
     @Override
      public void paint(Graphics g) {
-         
-         GeneralPath carro = new GeneralPath();
-        GeneralPath gd = new GeneralPath();
-        GeneralPath roda  = new GeneralPath();
-        
-        carro.moveTo(60, 120);
-        gd.moveTo(60, 120);
-        carro.lineTo(80, 120);
-        roda.moveTo(80, 120);
-        roda.quadTo(90, 140, 100, 120);
-        carro.lineTo(160, 120);
-        roda.moveTo(160, 120);
-        roda.quadTo(170, 140, 180, 120);
-        carro.lineTo(200, 120);
-        carro.curveTo(195, 100, 200, 80, 160, 80);
-        carro.lineTo(110, 80);
-        carro.lineTo(90,100);
-        carro.lineTo(60, 100);
-        carro.lineTo(60, 120);
-        gd.moveTo(0, 130);
-        gd.lineTo(300, 130); //chao
-        
         Graphics2D g2d = (Graphics2D) g;
-        g2d.draw(carro);
-        g2d.draw(gd);
-        g2d.draw(roda);
-         
-         
-        
         midPoint(raio, g2d);
 
      }
