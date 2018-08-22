@@ -20,7 +20,6 @@ public class MidPointCircle extends Frame {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
     
         MidPointCircle mpc = new MidPointCircle();
         mpc.setSize(500, 500);
@@ -42,7 +41,7 @@ public class MidPointCircle extends Frame {
 
      }
      void midPoint(int raio, Graphics2D g2d){
-         int d = (5 / 4) * raio;
+         int d = raio;
          int x = 0;
          int y = raio;
         int centro_y = 250;
