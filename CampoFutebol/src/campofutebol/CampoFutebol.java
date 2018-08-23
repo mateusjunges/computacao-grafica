@@ -58,17 +58,6 @@ public class CampoFutebol extends Frame{
         areaDireita.lineTo(1250, 575);//linha frontal pequena area
         areaDireita.lineTo(1400, 575);//linha de baixo da pequena area
         
-//        escanteio.moveTo(150, 150);//canto superior esquerdo
-//        escanteio.curveTo(150, 177, 160, 157, 167, 150);//escanteio superior esquerdo
-//        escanteio.moveTo(1400, 150);//canto superior direito
-//        escanteio.curveTo(1400, 177, 1390, 157, 1383, 150);////escanteio superior direito
-//        escanteio.moveTo(150, 800);//canto inferior esquerdo
-//        escanteio.curveTo(150, 783, 160, 793, 167, 800);//escanteio inferior esquerdo
-//        escanteio.moveTo(1400, 800);//canto direito inferior
-//        escanteio.curveTo(1400, 783, 1390, 793, 1383, 800);//escanteio direito inferior
-//        
-        
-        
         Ellipse2D.Double penalti = new Ellipse2D.Double(337.5, 475 , 7, 7); //penalti esquerda
         Ellipse2D.Double penalti2 = new Ellipse2D.Double(1200, 475, 7, 7);//penalti direita
         Ellipse2D.Double meio_campo = new Ellipse2D.Double(625, 325,300,300); //meio de campo
@@ -97,7 +86,6 @@ public class CampoFutebol extends Frame{
         g2d.setColor(Color.green);
         g2d.fill(escanteio);
         g2d.setColor(Color.white);
-       // g2d.draw(escanteio);
         g2d.setColor(Color.white);
         g2d.fill(penalti);
         g2d.fill(penalti2);
