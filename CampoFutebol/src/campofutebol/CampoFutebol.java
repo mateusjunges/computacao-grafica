@@ -58,15 +58,15 @@ public class CampoFutebol extends Frame{
         areaDireita.lineTo(1250, 575);//linha frontal pequena area
         areaDireita.lineTo(1400, 575);//linha de baixo da pequena area
         
-        escanteio.moveTo(150, 150);//canto superior esquerdo
-        escanteio.curveTo(150, 177, 160, 157, 167, 150);//escanteio superior esquerdo
-        escanteio.moveTo(1400, 150);//canto superior direito
-        escanteio.curveTo(1400, 177, 1390, 157, 1383, 150);////escanteio superior direito
-        escanteio.moveTo(150, 800);//canto inferior esquerdo
-        escanteio.curveTo(150, 783, 160, 793, 167, 800);//escanteio inferior esquerdo
-        escanteio.moveTo(1400, 800);//canto direito inferior
-        escanteio.curveTo(1400, 783, 1390, 793, 1383, 800);//escanteio direito inferior
-        
+//        escanteio.moveTo(150, 150);//canto superior esquerdo
+//        escanteio.curveTo(150, 177, 160, 157, 167, 150);//escanteio superior esquerdo
+//        escanteio.moveTo(1400, 150);//canto superior direito
+//        escanteio.curveTo(1400, 177, 1390, 157, 1383, 150);////escanteio superior direito
+//        escanteio.moveTo(150, 800);//canto inferior esquerdo
+//        escanteio.curveTo(150, 783, 160, 793, 167, 800);//escanteio inferior esquerdo
+//        escanteio.moveTo(1400, 800);//canto direito inferior
+//        escanteio.curveTo(1400, 783, 1390, 793, 1383, 800);//escanteio direito inferior
+//        
         
         
         Ellipse2D.Double penalti = new Ellipse2D.Double(337.5, 475 , 7, 7); //penalti esquerda
@@ -97,7 +97,7 @@ public class CampoFutebol extends Frame{
         g2d.setColor(Color.green);
         g2d.fill(escanteio);
         g2d.setColor(Color.white);
-        g2d.draw(escanteio);
+       // g2d.draw(escanteio);
         g2d.setColor(Color.white);
         g2d.fill(penalti);
         g2d.fill(penalti2);
@@ -105,14 +105,43 @@ public class CampoFutebol extends Frame{
         g2d.draw(penalti2);
         
         
-        int xIniR = 375;
-        int yIniR = 375;
+        int xIniResq = 375;
+        int yIniResq = 375;
+        int xIniRdir = 1123;
+        int yIniRdir = 375;
         int largR = 55;
         int AltR = 200;
         
-        Arc2D meiaLuaEsq = new Arc2D.Double(xIniR, yIniR, largR, AltR, 270, 180, Arc2D.OPEN); // desenha a parte de 270 até 180 graus de um circulo
+        Arc2D meiaLuaEsq = new Arc2D.Double(xIniResq, yIniResq, largR, AltR, 270, 180, Arc2D.OPEN); // desenha a parte de 270 até 180 graus de um circulo
         g2d.setColor(Color.white);
         g2d.draw(meiaLuaEsq);
+        Arc2D meiaLuaDir = new Arc2D.Double(xIniRdir, yIniRdir, largR, AltR, 270, -180, Arc2D.OPEN); // desenha a parte de 270 até 180 graus de um circulo
+        g2d.setColor(Color.white);
+        g2d.draw(meiaLuaDir);
+        
+        int l_escanteio = 30;
+        int h_escanteio = 30;
+        
+        int xescanteioES = 135;
+        int yescanteioES = 135;
+        int xescanteioDS = 1385;
+        int yescanteioDS = 135;
+        int xescanteioEI = 135;
+        int yescanteioEI = 785;
+        int xescanteioDI = 1385;
+        int yescanteioDI = 785;
+        
+        Arc2D escanteioES = new Arc2D.Double(xescanteioES, yescanteioES, l_escanteio, h_escanteio, 270, 90, Arc2D.OPEN); 
+        Arc2D escanteioDS = new Arc2D.Double(xescanteioDS, yescanteioDS, l_escanteio, h_escanteio, 180, 90, Arc2D.OPEN); 
+        Arc2D escanteioEI = new Arc2D.Double(xescanteioEI, yescanteioEI, l_escanteio, h_escanteio, 0, 90, Arc2D.OPEN); 
+        Arc2D escanteioDI = new Arc2D.Double(xescanteioDI, yescanteioDI, l_escanteio, h_escanteio, 90, 90, Arc2D.OPEN); 
+        
+        g2d.setColor(Color.white);
+        g2d.draw(escanteioES);
+        g2d.draw(escanteioDS);
+        g2d.draw(escanteioEI);
+        g2d.draw(escanteioDI);
+        
         
        
         g2d.setColor(Color.white);
