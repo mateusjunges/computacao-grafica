@@ -11,6 +11,13 @@ import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+
 
 /**
  *
@@ -26,6 +33,7 @@ public class CampoFutebol extends Frame{
     public void paint(Graphics g){
         GeneralPath gp = new GeneralPath();
         Graphics2D g2d =  (Graphics2D) g;
+    
         GeneralPath areaEsquerda = new GeneralPath();
         GeneralPath areaDireita = new GeneralPath();
         GeneralPath escanteio = new GeneralPath();
@@ -58,35 +66,36 @@ public class CampoFutebol extends Frame{
         areaDireita.lineTo(1250, 575);//linha frontal pequena area
         areaDireita.lineTo(1400, 575);//linha de baixo da pequena area
         
+        
         Ellipse2D.Double penalti = new Ellipse2D.Double(337.5, 475 , 7, 7); //penalti esquerda
         Ellipse2D.Double penalti2 = new Ellipse2D.Double(1200, 475, 7, 7);//penalti direita
         Ellipse2D.Double meio_campo = new Ellipse2D.Double(625, 325,300,300); //meio de campo
         Ellipse2D.Double marca_meio = new Ellipse2D.Double(770, 472, 10, 10); //marca do meio de campo
         
-        g2d.setColor(Color.white);
+        g2d.setColor(Color.black);
 
         g2d.setColor(Color.GREEN);
         g2d.fill(gp);
-        g2d.setColor(Color.white);
+        g2d.setColor(Color.black);
         g2d.draw(gp);
         g2d.setColor(Color.black);
-        g2d.setColor(Color.white);
+        g2d.setColor(Color.black);
         g2d.draw(meio_campo);
-        g2d.setColor(Color.white);
+        g2d.setColor(Color.black);
         g2d.fill(marca_meio);
         g2d.draw(marca_meio);
         g2d.setColor(Color.green);
         g2d.fill(areaDireita);
-        g2d.setColor(Color.white);
+        g2d.setColor(Color.black);
         g2d.draw(areaDireita);
         g2d.setColor(Color.green);
         g2d.fill(areaEsquerda);
-        g2d.setColor(Color.white);
+        g2d.setColor(Color.black);
         g2d.draw(areaEsquerda);
         g2d.setColor(Color.green);
         g2d.fill(escanteio);
-        g2d.setColor(Color.white);
-        g2d.setColor(Color.white);
+        g2d.setColor(Color.black);
+        g2d.setColor(Color.black);
         g2d.fill(penalti);
         g2d.fill(penalti2);
         g2d.draw(penalti);
@@ -101,10 +110,10 @@ public class CampoFutebol extends Frame{
         int AltR = 200;
         
         Arc2D meiaLuaEsq = new Arc2D.Double(xIniResq, yIniResq, largR, AltR, 270, 180, Arc2D.OPEN); // desenha a parte de 270 até 180 graus de um circulo
-        g2d.setColor(Color.white);
+        g2d.setColor(Color.black);
         g2d.draw(meiaLuaEsq);
         Arc2D meiaLuaDir = new Arc2D.Double(xIniRdir, yIniRdir, largR, AltR, 270, -180, Arc2D.OPEN); // desenha a parte de 270 até 180 graus de um circulo
-        g2d.setColor(Color.white);
+        g2d.setColor(Color.black);
         g2d.draw(meiaLuaDir);
         
         int l_escanteio = 30;
@@ -124,7 +133,7 @@ public class CampoFutebol extends Frame{
         Arc2D escanteioEI = new Arc2D.Double(xescanteioEI, yescanteioEI, l_escanteio, h_escanteio, 0, 90, Arc2D.OPEN); 
         Arc2D escanteioDI = new Arc2D.Double(xescanteioDI, yescanteioDI, l_escanteio, h_escanteio, 90, 90, Arc2D.OPEN); 
         
-        g2d.setColor(Color.white);
+        g2d.setColor(Color.black);
         g2d.draw(escanteioES);
         g2d.draw(escanteioDS);
         g2d.draw(escanteioEI);
@@ -132,28 +141,49 @@ public class CampoFutebol extends Frame{
         
         
        
-        g2d.setColor(Color.white);
+        g2d.setColor(Color.black);
         g2d.setFont(new Font("Arial", Font.BOLD, 30) );
         g2d.drawString("Computação UEPG", 640, 140);//Escrita topo
-        AffineTransform affineTransform = AffineTransform.getScaleInstance(1, 1);
         g2d.rotate(Math.toRadians(90),1150, 500);
         g2d.drawString("Computação Gráfica - 2018", 940, 250);
         g2d.rotate(Math.toRadians(90),1150,500);
         g2d.drawString("Mateus Junges", 1430, 190);
         g2d.rotate(Math.toRadians(90), 1150, 500);
         g2d.drawString("Real Madrid CF", 1100, -510);
- 
+        
+       
+        /*
+        Buffered Image é usado para criar o objeto de imagem que vai ser usado
+        usado com o ImageIO pra operações de leitura e escrita
+        */
+        
+        int image_width = 50; //largura da imagem
+        int image_height = 50; // altura da imagem
+        BufferedImage image = null;
+        File file = null;
+        String path_to_image_input = "C:\\Users\\mateu\\Documents\\Engenharia-de-computacao\\computacao-grafica\\CampoFutebol\\img\\comp-logo.png";
+       
+        //ler o arquivo de imagem:
+        file = new File(path_to_image_input);
+        image = new BufferedImage(image_width, image_height, BufferedImage.TYPE_INT_ARGB);
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException ex) {
+            Logger.getLogger(CampoFutebol.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Escrever a imagem:
+        g2d.drawImage(image, image.getWidth()/2, image.getHeight()/2, null);
     }
     
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
         CampoFutebol cf = new CampoFutebol();
         cf.setSize(1500, 900);
-        cf.setBackground(Color.black);
-        cf.setTitle("Campo de futebol");
+        cf.setBackground(Color.white);
+        cf.setTitle("Campo de futebol - Mateus Junges");
         cf.setVisible(true);
     }
     
