@@ -138,10 +138,9 @@ public class CampoFutebol extends Frame{
         g2d.draw(escanteioDS);
         g2d.draw(escanteioEI);
         g2d.draw(escanteioDI);
-        
-        
+         
        
-        g2d.setColor(Color.black);
+        g2d.setColor(Color.white);
         g2d.setFont(new Font("Arial", Font.BOLD, 30) );
         g2d.drawString("Computação UEPG", 640, 140);//Escrita topo
         g2d.rotate(Math.toRadians(90),1150, 500);
@@ -161,7 +160,7 @@ public class CampoFutebol extends Frame{
         int image_height = 50; // altura da imagem
         BufferedImage image = null;
         File file = null;
-        String path_to_image_input = "C:\\Users\\mateu\\Documents\\Engenharia-de-computacao\\computacao-grafica\\CampoFutebol\\img\\comp-logo.png";
+        String path_to_image_input = "C:\\Users\\mateu\\Documents\\Engenharia-de-computacao\\computacao-grafica\\CampoFutebol\\img\\logo-fc-comp.png";
        
         //ler o arquivo de imagem:
         file = new File(path_to_image_input);
@@ -173,7 +172,8 @@ public class CampoFutebol extends Frame{
         }
         
         //Escrever a imagem:
-        g2d.drawImage(image, image.getWidth()/2, image.getHeight()/2, null);
+        g2d.rotate(Math.toRadians(90), image.getWidth()/2, image.getHeight()/2  );
+        g2d.drawImage(image, image.getWidth()/2-421, image.getHeight()/2-1180, null);
     }
     
     /**
@@ -182,7 +182,7 @@ public class CampoFutebol extends Frame{
     public static void main(String[] args) {
         CampoFutebol cf = new CampoFutebol();
         cf.setSize(1500, 900);
-        cf.setBackground(Color.white);
+        cf.setBackground(Color.black);
         cf.setTitle("Campo de futebol - Mateus Junges");
         cf.setVisible(true);
     }
