@@ -90,7 +90,8 @@ class BresenhamPanel extends JPanel {
         int dx2 = 2 * dx; // fatores de escala de inclinação
         int dy2 = 2 * dy; // evitar ponto flutuante
  
-        int ix = x1 < x2 ? 1 : -1; // incrementa a direção
+        
+        int ix = x1 < x2 ? 1 : -1; 
         int iy = y1 < y2 ? 1 : -1;
  
         int x = x1;
@@ -121,6 +122,6 @@ class BresenhamPanel extends JPanel {
                 }
             }
         }
-    }
+        }
     
 }
