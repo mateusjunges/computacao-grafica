@@ -29,7 +29,7 @@ public class CampoFutebol extends Frame{
     
     private int texture_width = 50;
     private int texture_height = 50;
-    private String path_to_texture = null;
+    private String path_to_texture = "img\\texture.jpg";
     private BufferedImage getTexture() {
             BufferedImage image = new BufferedImage(texture_width, texture_height, BufferedImage.TYPE_INT_ARGB);
             try {
@@ -183,7 +183,7 @@ public class CampoFutebol extends Frame{
         }
         
         g2d.rotate(Math.toRadians(90), image.getWidth()/2, image.getHeight()/2  );//gira
-        g2d.drawImage(image, image.getWidth()/2-421, image.getHeight()/2-1180, null);//desenha a imagem
+        g2d.drawImage(image, image.getWidth()/2-421, image.getHeight()/2-1180,null);//desenha a imagem
     }
     
     /**
