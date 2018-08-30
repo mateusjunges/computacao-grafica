@@ -35,7 +35,7 @@ public class CampoFutebol extends Frame{
             try {
                 image = ImageIO.read(new File("img\\texture.jpg"));
             }
-            catch (IOException e) {
+            catch (IOException e) { /* Se ocorrer um erro durante o carregamento da textura, coloca a cor verde para o fundo */
                 //System.out.println(e);
                 image = new BufferedImage (50,50, BufferedImage.TYPE_INT_RGB);
                 Graphics2D graphics = image.createGraphics();
