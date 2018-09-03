@@ -34,7 +34,7 @@ public class Bresenham {
  
 class BresenhamPanel extends JPanel {
  
-    private final int pixelSize = 10; /*
+    private final int pixelSize = 5; /*
         Tamanho do do pixel que vou colocar na tela.
         Uso drawoval para simular um pixel, fazendo 
         com que seja possível visualizar melhor o que está acontecendo.
