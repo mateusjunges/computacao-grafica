@@ -11,5 +11,5 @@ micro estruturada. Devem ser usados os seguintes parâmetros:</p>
 	<li><b>dR_0:</b> Distância do início para o primeiro riblet</li>
 </ul>
 
-<img src="img/micro-estrutura.PNG">
+<img src="img/micro-estrutura.JPG">
 	
