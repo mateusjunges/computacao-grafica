@@ -30,13 +30,15 @@ class Riblet extends JFrame{
     public void paint(Graphics graphics){
         GeneralPath line = new GeneralPath();
         Graphics2D graphics2d = (Graphics2D) graphics;
-        
+        y0 = HEIGHT/2;
+        x0 = WIDTH/2;
         line.moveTo(x0, y0);
         x = x0 + (dR_0 - (xR/2));
         y = y0;
         
         int i = 0;
         while( i < tamanho_amostra ){
+            System.out.println("desenhando");
             line.lineTo(x,y);
             x = x + (xR / 2);
             y = y0 - altura;
