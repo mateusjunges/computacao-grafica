@@ -271,7 +271,7 @@ public class StaticSceneExample extends JFrame
   * Generates a default surface (Appearance) in a specified colour.
   *
   * @param app      The Appearance for the surface.
-  * @param col      The colour.
+  * @param col      The color.
   */
   public static void setToMyDefaultAppearance(Appearance app, Color3f col)
   {
