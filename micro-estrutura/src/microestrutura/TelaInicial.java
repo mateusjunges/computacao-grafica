@@ -350,6 +350,7 @@ public class TelaInicial extends javax.swing.JFrame {
         String s_dR = text_dR.getText();
         String s_dR_0 = text_dR0.getText();
         
+        //Verifica se um dos parâmetros está vazio:
         if (s_tamanho_amostra.isEmpty() || s_altura.isEmpty() || s_alpha.isEmpty() || s_dR.isEmpty() || s_dR_0.isEmpty()){
             modal_CamposIncompletos modal = new modal_CamposIncompletos();
             modal.setLocationRelativeTo(this);
@@ -357,21 +358,22 @@ public class TelaInicial extends javax.swing.JFrame {
             modal_CamposIncompletos.setLabelDescription("Preencha todos os campos!");
             modal.setSize(400, 400);
             modal.setVisible(true);
-        }else{
-            int tamanho_amostra;
-            float altura;
-            float alpha;
-            float dR;
-            float dR_0;
-
-            // Coletar os valores:
-            tamanho_amostra = Integer.parseInt(s_tamanho_amostra); //pega o tamanho da amostra do campo
-            altura = Float.parseFloat(s_altura); //pega a altura 
-            alpha = Float.parseFloat(s_alpha); //valor do angulo
-            dR = Float.parseFloat(s_dR); //distancia entre os centros dos riblets
-            dR_0 = Float.parseFloat(s_dR_0); //distancia do inicio para o primeiro Riblet    
+        }else{ //se os campos são válidos:
+            int tamanho_amostra; //tamnaho da amostra
+            float altura; //altura do riblet
+            float alpha; //angulo de abertura do  riblet
+            float dR; //distancia entre os centros dos riblets
+            float dR_0; //distancia do inicio até o primeiro riblet
+            
+            
+            tamanho_amostra = Integer.parseInt(s_tamanho_amostra); //converte a variavel de string para float
+            altura = Float.parseFloat(s_altura); //converte a variavel de string para float
+            alpha = Float.parseFloat(s_alpha); //converte a variavel de string para float
+            dR = Float.parseFloat(s_dR); //converte a variavel de string para float
+            dR_0 = Float.parseFloat(s_dR_0); //converte a variavel de string para float  
             
             Riblet r = new Riblet( tamanho_amostra, altura, alpha, dR, dR_0);
+
             r.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             r.setSize(820,620);
             r.setLocationRelativeTo(null);

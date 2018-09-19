@@ -9,6 +9,7 @@ import com.sun.j3d.utils.applet.MainFrame;
 import com.sun.j3d.utils.universe.SimpleUniverse;
 import com.sun.j3d.utils.universe.PlatformGeometry;
 import com.sun.j3d.utils.behaviors.keyboard.*;
+import com.sun.j3d.utils.behaviors.vp.OrbitBehavior;
 import com.sun.j3d.utils.geometry.Cylinder;
 import com.sun.j3d.utils.geometry.Sphere;
 
@@ -25,10 +26,12 @@ public class Rocket extends Applet {
  private Canvas3D canvas = null;
  private TransformGroup viewtrans = null;
 
- public Rocket() {
+ public Rocket() {  
   setLayout(new BorderLayout());
   GraphicsConfiguration config = SimpleUniverse
     .getPreferredConfiguration();
+  
+  
 
   canvas = new Canvas3D(config);
   add("Center", canvas);
@@ -39,6 +42,11 @@ public class Rocket extends Applet {
 
   universe.getViewer().getView().setBackClipDistance(100.0);
   universe.addBranchGraph(scene);
+  
+  //The following three lines enable navigation through the scene using the mouse.
+    OrbitBehavior ob = new OrbitBehavior(canvas);
+    ob.setSchedulingBounds(new BoundingSphere(new Point3d(0.0,0.0,0.0),Double.MAX_VALUE));
+    universe.getViewingPlatform().setViewPlatformBehavior(ob);
  }
 
  private BranchGroup createSceneGraph() {

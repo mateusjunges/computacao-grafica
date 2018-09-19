@@ -6,6 +6,7 @@ import com.sun.j3d.utils.geometry.*;
 import com.sun.j3d.utils.universe.*;
 import javax.media.j3d.*;
 import com.sun.j3d.utils.behaviors.vp.*;
+import static java.lang.Math.PI;
 import javax.swing.JFrame;
 
 
@@ -133,16 +134,17 @@ public class StaticSceneExample extends JFrame
     setToMyDefaultAppearance(blueApp,new Color3f(0.0f,0.0f,1.0f));
 
     //Generate the rotor blade in the form of a (very thin and long) box.
-    Box rotor = new Box(0.4f,0.0001f,0.01f,blueApp);
+    Box rotor = new Box(0.4f,0.001f,0.01f,blueApp);
 
     //A transformation placing the rotor blade on top of the cockpit.
     Transform3D tfRotor = new Transform3D();
     tfRotor.setTranslation(new Vector3f(0.0f,cabinRadius,0.0f));
-
+    
     //The transformation group for the rotor blade.
     TransformGroup tgRotor = new TransformGroup(tfRotor);
     tgRotor.addChild(rotor);
 
+   
 
 //*** The tail of the helicopter. ***
 
@@ -159,8 +161,21 @@ public class StaticSceneExample extends JFrame
     //The transformation group for the tail.
     TransformGroup tgTail = new TransformGroup(tfTail);
     tgTail.addChild(tail);
-
-
+    
+    
+//////////////////////////////////////////////////////////************************************/////////////////////////////////
+    Appearance red_app = new Appearance();
+    setToMyDefaultAppearance(blueApp,new Color3f(1.0f, 0.0f, 0.0f));
+    Box h_tras = new Box(0.1f, 0.01f, 0.01f, redApp);
+    
+    Transform3D tfH_tras = new Transform3D();
+    tfH_tras.setTranslation(new Vector3f(-0.6f,0.0f,0.0f));
+    
+    TransformGroup tgH_tras = new TransformGroup(tfH_tras);
+    tgH_tras.addChild(h_tras);
+    
+ 
+    
 
 //*** The helicopter, assembled by the transformation groups  ***
 //*** for the cockpit, the rotor blade and the tail.          ***
