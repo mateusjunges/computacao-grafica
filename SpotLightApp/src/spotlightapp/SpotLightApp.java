@@ -1,4 +1,4 @@
-package spotlight;
+package spotlightapp;
 
 import javax.media.j3d.*;
 import javax.vecmath.*;
@@ -10,24 +10,17 @@ import javax.swing.JFrame;
 
 
 /**
-* An unrealistic effect caused by a rotating spotlight whose light
-* intensity does not decrease from the centre of the light cone to
-* the edge of the light cone. The intensity drops abruptly to 0 at 
-* the edge of the light cone. Changing the last parameter in the
-* constructor of the SpotLight from 0.0f to 1.0f will amend this 
-* effect.
-*
-* @author Frank Klawonn
-* Last change 01.07.2005
-*/
-public class MovingSpotLight extends JFrame
+ * 
+ * @author Mateus Junges <contato@mateusjunges.com>
+ */
+public class SpotLightApp extends JFrame
 {
 
   //The canvas to be drawn upon.
   public Canvas3D myCanvas3D;
 
 
-  public MovingSpotLight()
+  public SpotLightApp()
   {
     //Mechanism for closing the window and ending the program.
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,8 +66,12 @@ public class MovingSpotLight extends JFrame
 
   public static void main(String[] args)
   {
-     MovingSpotLight msl = new MovingSpotLight();
+     SpotLightApp msl = new SpotLightApp();
   }
+
+
+
+
 
   //In this method, the objects for the scene are generated and added to 
   //the SimpleUniverse.
@@ -86,9 +83,9 @@ public class MovingSpotLight extends JFrame
 
 
     //Generate an Appearance.
-    Color3f ambientColourShaded = new Color3f(1.0f,1.0f,1.0f);
+    Color3f ambientColourShaded = new Color3f(0.0f,1.4f,1.4f);
     Color3f emissiveColourShaded = new Color3f(0.0f,0.0f,0.0f);
-    Color3f diffuseColourShaded = new Color3f(0.0f,0.7f,0.7f);
+    Color3f diffuseColourShaded = new Color3f(1.0f,0.7f,0.7f);
     Color3f specularColourShaded = new Color3f(0.0f,0.5f,0.5f);
 
     float shininessShaded = 20.0f;
@@ -98,9 +95,24 @@ public class MovingSpotLight extends JFrame
                            diffuseColourShaded,specularColourShaded,shininessShaded));
 
 
+
+
+
+
     float r = 0.3f; //The radius of the sphere.
     float boxHL = 0.7f*r; //Half the vertex length of the cube.
     float shift = 3.0f*r; //Distance between cube and sphere.
+
+
+//*** The sphere and its transformation group ***
+    /*Sphere s = new Sphere(r,Sphere.GENERATE_NORMALS,100,shadedApp);
+    Transform3D tfSphere = new Transform3D();
+    tfSphere.setTranslation(new Vector3f(-0.95f+r,0.0f,0.0f));
+    TransformGroup tgSphere = new TransformGroup(tfSphere);
+    tgSphere.addChild(s);
+    theScene.addChild(tgSphere);*/
+
+
 
 
 //*** The cube and its transformation group ***
@@ -135,17 +147,30 @@ public class MovingSpotLight extends JFrame
 
   }
 
+
+
+
+
   //Add light to the scene including the rotating spotlight.
   public void addLight(SimpleUniverse su)
   {
 
     BranchGroup bgLight = new BranchGroup();
 
-    BoundingSphere bounds = new BoundingSphere(new Point3d(0.0,0.0,0.0), Double.MAX_VALUE);
+    BoundingSphere bounds = new BoundingSphere(new Point3d(3.0,5.0,0.0), Double.MAX_VALUE);
 
 
     //A spotlight rotating around the scene.
-    Color3f lightColourSpot = new Color3f(0.3f, 0.3f, 0.3f);
+    Color3f lightColourSpot2 = new Color3f(0.3f, 8.3f, 0.3f);
+    SpotLight lightSpot2 = new SpotLight(lightColourSpot2,
+                                     new Point3f(1.0f,0.0f,1.0f),
+                                     new Point3f(0.1f,0.1f,0.01f),
+                                     new Vector3f(0.0f,0.0f,-1.0f),
+                                     (float) (Math.PI/4),
+                                     0.0f);
+
+    lightSpot2.setInfluencingBounds(bounds);
+    Color3f lightColourSpot = new Color3f(8.3f, 0.3f, 0.3f);
     SpotLight lightSpot = new SpotLight(lightColourSpot,
                                      new Point3f(0.0f,0.0f,1.0f),
                                      new Point3f(0.1f,0.1f,0.01f),
@@ -154,6 +179,16 @@ public class MovingSpotLight extends JFrame
                                      0.0f);
 
     lightSpot.setInfluencingBounds(bounds);
+    Color3f lightColourSpot3 = new Color3f(100.3f, 100.3f, 0.0f);
+    SpotLight lightSpot3 = new SpotLight(lightColourSpot,
+                                     new Point3f(0.6f,1.0f,2.0f),
+                                     new Point3f(1.1f,1.1f,0.01f),
+                                     new Vector3f(0.0f,0.0f,-1.0f),
+                                     (float) (Math.PI/4),
+                                     0.0f);
+
+    lightSpot3.setInfluencingBounds(bounds);
+    
 
 
 
@@ -161,6 +196,8 @@ public class MovingSpotLight extends JFrame
     //The transformation group for the spotlight and its rotation.
     TransformGroup tfmLight = new TransformGroup();
     tfmLight.addChild(lightSpot);
+    tfmLight.addChild(lightSpot2);
+    tfmLight.addChild(lightSpot3);
 
     //The Alpha for the rotation.
     Alpha alphaLight = new Alpha(-1,4000);
@@ -179,7 +216,7 @@ public class MovingSpotLight extends JFrame
 
 
     //Ambient light.
-    Color3f ambientLightColour = new Color3f(1.0f, 0.0f, 0.0f);
+    Color3f ambientLightColour = new Color3f(3.5f, 0.5f, 0.5f);
     AmbientLight ambLight = new AmbientLight(ambientLightColour);
     ambLight.setInfluencingBounds(bounds);
     bgLight.addChild(ambLight);
